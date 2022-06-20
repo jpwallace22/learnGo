@@ -1,3 +1,3 @@
-module jpwallace22/learnGo
+module github.com/jpwallace22/learnGo
 
 go 1.18
