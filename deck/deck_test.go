@@ -21,6 +21,7 @@ func TestSaveToDeckAndNewDeckFromFile(t *testing.T) {
 
 	os.Remove("_deckTesting")
 }
+
 func testDeck(d deck, t *testing.T) {
 	if len(d) != 52 {
 		t.Errorf("Expected deck length of 52, but got %v", len(d))
