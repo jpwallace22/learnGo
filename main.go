@@ -1,30 +1,18 @@
 package main
 
-import "fmt"
-
-type bot interface {
-	getGreeting() string
-}
-
-type englishBot struct{}
-type spanishBot struct{}
+import (
+	"fmt"
+	"io"
+	"net/http"
+	"os"
+)
 
 func main() {
-	eb := englishBot{}
-	sb := spanishBot{}
+	resp, err := http.Get("https://google.com")
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
 
-	printGreeting(eb)
-	printGreeting(sb)
-}
-
-func (englishBot) getGreeting() string {
-	return "Hello there"
-}
-
-func (spanishBot) getGreeting() string {
-	return "Hola!"
-}
-
-func printGreeting(b bot) {
-	fmt.Println(b.getGreeting())
+	io.Copy(os.Stdout, resp.Body)
 }
